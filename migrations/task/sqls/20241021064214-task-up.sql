@@ -96,7 +96,7 @@ VALUES
 INSERT INTO "COACH" (user_id, experience_years) VALUES 
 ((SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io'), 2),
 ((SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io'), 2),
-((SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io'), 2)
+((SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io'), 2);
 
 -- 3-2. 新增：承1，為三名教練新增專長資料至 `COACH_LINK_SKILL` ，資料需求如下：
     -- 1. 所有教練都有 `重訓` 專長
@@ -114,7 +114,7 @@ INSERT INTO "COACH" (user_id, experience_years) VALUES
     (
         (SELECT id FROM "COACH" WHERE user_id = ( SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io') ),
         (SELECT id FROM "SKILL" WHERE name = '瑜伽')
-    )
+    );
 
     -- 3. 教練`Q太郎` 需要有 `有氧運動` 與 `復健訓練` 專長
     INSERT INTO "COACH_LINK_SKILL" (coach_id, skill_id) VALUES
@@ -125,18 +125,18 @@ INSERT INTO "COACH" (user_id, experience_years) VALUES
     (
         (SELECT id FROM "COACH" WHERE user_id = ( SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io') ),
         (SELECT id FROM "SKILL" WHERE name = '復健訓練')
-    )
+    );
 
 -- 3-3 修改：更新教練的經驗年數，資料需求如下：
     -- 1. 教練`肌肉棒子` 的經驗年數為3年
     UPDATE "COACH" 
     SET experience_years = '3'
-    WHERE user_id = ( SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io')
+    WHERE user_id = ( SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io');
 
     -- 2. 教練`Q太郎` 的經驗年數為5年
     UPDATE "COACH" 
     SET experience_years = '5'
-    WHERE user_id = ( SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io')
+    WHERE user_id = ( SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io');
 
 -- 3-4 刪除：新增一個專長 空中瑜伽 至 SKILL 資料表，之後刪除此專長。
     INSERT INTO "SKILL" (name) VALUES ('空中瑜珈');
@@ -168,7 +168,7 @@ VALUES
 	'2024-11-25 16:00:00',
 	10,
 	'https://test-meeting.test.io'
-)
+);
 	
 
 -- ████████  █████   █    █████ 
@@ -191,7 +191,7 @@ VALUES
         (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io')),
         '2024-11-24 16:00:00',
         '即將授課'
-    )
+    );
 
     -- 2. 新增： `好野人` 預約 `李燕容` 的課程
         -- 1. 預約人設為 `好野人`
@@ -204,7 +204,7 @@ VALUES
         (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io')),
         '2024-11-24 16:00:00',
         '即將授課'
-    )
+    );
 
 -- 5-2. 修改：`王小明`取消預約 `李燕容` 的課程，請在`COURSE_BOOKING`更新該筆預約資料：
     -- 1. 取消預約時間`cancelled_at` 設為2024-11-24 17:00:00
@@ -230,7 +230,7 @@ VALUES
     (SELECT id FROM "COURSE" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io')),
     '2024-11-24 17:10:25',
     '即將授課'
-)
+);
 
 -- 5-4. 查詢：取得王小明所有的預約紀錄，包含取消預約的紀錄
 SELECT * FROM "COURSE_BOOKING"
